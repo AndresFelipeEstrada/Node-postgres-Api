@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
+    "test": "jest --config ./jest.e2e.json --verbose --watchAll",
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
@@ -34,9 +35,11 @@
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.1",
     "prettier": "^3.2.5",
     "sequelize-cli": "^6.6.2"
