@@ -2,30 +2,32 @@ import { User } from "../db/models/user.model.js";
 import boom from "@hapi/boom";
 
 class UserService {
-  constructor() { }
+  constructor() {}
 
   async create(data) {
-    const { email, password } = data
+    const { email, password } = data;
 
-    const isUserExist = await User.findOne({ where: { email } })
+    const isUserExist = await User.findOne({ where: { email } });
 
-    if (isUserExist) throw boom.conflict('El usuario ya existe')
+    if (isUserExist) throw boom.conflict("El usuario ya existe");
 
     const createdUser = await User.create({ email, password });
-    delete createdUser.dataValues.password
+    delete createdUser.dataValues.password;
     return createdUser;
   }
 
   async find() {
     const rta = await User.findAll({
+      attributes: { excludeL: ["password", "recoveryToken"] },
       include: ["customer"],
     });
-    return rta;
+    const plainUsers = rta.map((user) => user.get({ plain: true }));
+    return plainUsers;
   }
 
   async findByEmail(email) {
     const rta = await User.findOne({
-      where: { email }
+      where: { email },
     });
     return rta;
   }

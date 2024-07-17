@@ -10,16 +10,22 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await server.close(); // Cierra el servidor después de las pruebas
-  await sequelize.close(); // Cierra la conexión de sequelize
+  await server.close();
+  await sequelize.close();
 });
 
 const api = request(app);
 
 describe("tests for app", () => {
-  test("get /", async () => {
+  test("[GET] /nueva", async () => {
     const response = await api.get("/nueva").set("api", "123");
     expect(response.headers["api"]).toBe("123");
     expect(response.statusCode).toBe(200);
+  });
+
+  test("[GET] /", async () => {
+    const response = await api.get("/");
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({ message: "Hello World" });
   });
 });
