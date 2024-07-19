@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "start": "node ./src/index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./jest.e2e.json --watchAll --detectOpenHandles",
-    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./jest.e2e.json --watchAll --detectOpenHandles --coverage",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./jest.e2e.json --watchAll --detectOpenHandles --runInBand",
+    "test:coverage": "npm run test -- --coverage",
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
