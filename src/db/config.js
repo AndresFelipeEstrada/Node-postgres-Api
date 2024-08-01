@@ -11,4 +11,4 @@ export default {
     url: URI,
     dialect: "postgres",
   },
-}
+};

@@ -13,3 +13,13 @@ services:
       - ./postgres_data:/var/lib/postgresql/data
     stdin_open: true
     tty: true
+  postgres-e2e:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=${DB_E2E}
+      - POSTGRES_USER=${DB_E2E_USER}
+      - POSTGRES_PASSWORD=${DB_E2E_PASSWORD}
+    ports:
+      - 5433:5432
+    stdin_open: true
+    tty: true

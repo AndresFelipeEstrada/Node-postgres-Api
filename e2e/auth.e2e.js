@@ -2,15 +2,18 @@ import request from "supertest";
 import { app } from "../src";
 import sequelize from "../src/libs/sequelize";
 import { User } from "../src/db/models/user.model";
+import { downSeed, upSeed } from "./utils/seed";
 
 let server;
 
 beforeAll(async () => {
+  await upSeed();
   server = app.listen();
   await sequelize.authenticate();
 });
 
 afterAll(async () => {
+  await downSeed();
   await server.close();
   await sequelize.close();
 });
@@ -30,11 +33,10 @@ describe("tests for auth", () => {
     });
 
     test("should return 200", async () => {
-      const user = await User.findByPk("1");
-
+      const user = await User.findByPk(1);
       const inputData = {
         email: user.email,
-        password: "12345678",
+        password: "admin12345",
       };
 
       const { statusCode, body } = await api
