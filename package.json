@@ -8,6 +8,8 @@
     "start": "node ./src/index.js",
     "test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./jest.e2e.json --watchAll --detectOpenHandles --runInBand",
     "test:coverage": "npm run test -- --coverage",
+    "seed": "sequelize-cli db:seed:all",
+    "seed:undo": "sequelize-cli db:seed:undo:all",
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
@@ -33,7 +35,8 @@
     "passport-local": "^1.0.0",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "umzug": "^3.8.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",

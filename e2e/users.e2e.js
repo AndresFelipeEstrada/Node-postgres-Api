@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../src";
 import sequelize from "../src/libs/sequelize";
 import { User } from "../src/db/models/user.model";
-import { downSeed, upSeed } from "./utils/seed";
+import { downSeed, upSeed } from "./utils/umzug.js";
 
 let server;
 
@@ -23,7 +23,7 @@ const api = request(app);
 describe("tests for users", () => {
   describe("[GET] /users/{id}", () => {
     test("should return a user", async () => {
-      const user = await User.findByPk("1");
+      const user = await User.findByPk(1);
 
       const { body, statusCode } = await api.get(`/api/v1/users/${user.id}`);
 

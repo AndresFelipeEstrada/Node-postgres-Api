@@ -1,6 +1,5 @@
 import { Category } from "../../src/db/models/category.model";
 import { User } from "../../src/db/models/user.model";
-import { hashPassword } from "../../src/libs/bcrypt";
 import sequelize from "../../src/libs/sequelize";
 
 export const upSeed = async () => {

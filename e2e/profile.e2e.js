@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../src";
 import sequelize from "../src/libs/sequelize";
 import { User } from "../src/db/models/user.model";
-import { downSeed, upSeed } from "./utils/seed";
+import { downSeed, upSeed } from "./utils/umzug.js";
 
 let server;
 
@@ -28,7 +28,7 @@ describe("[GET] /my-orders", () => {
 
     const inputData = {
       email: user.email,
-      password: "admin12345",
+      password: "admin123",
     };
 
     const { body } = await api.post("/api/v1/auth/login").send(inputData);
