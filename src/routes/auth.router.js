@@ -19,7 +19,7 @@ router.post(
   async (req, res, next) => {
     try {
       const user = req.user;
-      return res.json(service.signToken(user));
+      return res.status(200).json(service.signToken(user));
     } catch (e) {
       next(e);
     }

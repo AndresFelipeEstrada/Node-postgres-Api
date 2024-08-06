@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-dotenv.config();
+
+const envFile = process.env.NODE_ENV === "test" ? ".env.e2e" : ".env";
+dotenv.config({ path: envFile });
 
 const config = {
   env: process.env.NODE_ENV || "development",
@@ -12,7 +14,7 @@ const config = {
   apiKey: process.env.API_KEY,
   jwtSecret: process.env.JWT_SECRET,
   email: process.env.EMAIL,
-  emailPassword: process.env.EMAIL_PASSWORD
-}
+  emailPassword: process.env.EMAIL_PASSWORD,
+};
 
 export default config;
